@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IoT Simulator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-dot"></div>
+    IOT SIMULATOR
+  </div>
+  <div class="hdr-right">
+    <span id="uptimeEl">00:00:00</span>
+    <div class="status-pill" id="statusPill">
+      <div class="sdot"></div>
+      <span id="statusTxt">IDLE</span>
+    </div>
+  </div>
+</header>
+
+<div class="top-section">
+
+  <!-- BIG BUTTON -->
+  <div class="control-panel" id="ctrlPanel">
+    <button class="big-btn" id="mainBtn" onclick="toggle()">
+      <svg class="pwr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M12 2v6M6.34 6.34a8 8 0 1 0 11.32 0" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <div class="btn-label" id="btnLabel">ZATRZYMANY</div>
+    <div class="cycle-info">
+      Cykl&nbsp;<span class="cv" id="cycleEl">0</span>&nbsp;·&nbsp;spike co&nbsp;<b id="spikeDisp">—</b>
+    </div>
+  </div>
+
+  <!-- PARAMS -->
+  <div class="params-panel">
+    <div class="section-label">Parametry symulacji</div>
+    <div class="param-grid">
+
+      <div class="param-row">
+        <span class="param-label">Device ID</span>
+        <select class="param-select" id="deviceId" style="width:150px">
+          <option>raspberry-pi-01</option>
+          <option>device-test-01</option>
+        </select>
+      </div>
+
+      <div class="param-row">
+        <span class="param-label">Interwał (s)</span>
+        <input class="param-input" id="interval" type="number" value="5" min="1" max="60">
+      </div>
+
+      <div class="param-row">
+        <span class="param-label">Spike co N cykli</span>
+        <input class="param-input" id="spikeEvery" type="number" value="1" min="1" max="100">
+      </div>
+
+      <div class="param-row">
+        <span class="param-label">Min temp spike (°C)</span>
+        <input class="param-input" id="spikeMin" type="number" value="29" min="20" max="50">
+      </div>
+
+      <div class="param-row">
+        <span class="param-label">Temp min / max (°C)</span>
+        <div style="display:flex;gap:4px">
+          <input class="param-input" id="tMin" type="number" value="18" style="width:44px">
+          <input class="param-input" id="tMax" type="number" value="26" style="width:44px">
+        </div>
+      </div>
+
+      <div class="param-row">
+        <span class="param-label">Wilg. min / max (%)</span>
+        <div style="display:flex;gap:4px">
+          <input class="param-input" id="hMin" type="number" value="40" style="width:44px">
+          <input class="param-input" id="hMax" type="number" value="75" style="width:44px">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="term-header">
+    <div class="tdot tr"></div>
+    <div class="tdot ty"></div>
+    <div class="tdot tg"></div>
+    <span class="term-title">terminal — iot-simulator</span>
+    <span class="term-clear" onclick="clearTerm()">clear</span>
+  </div>
+  <div class="terminal" id="term">
+    <div class="ll">
+      <span class="lt">--:--:--</span>
+      <span class="lsy">[SYS]</span>&nbsp;
+      <span class="lm">Gotowy. Ustaw parametry i naciśnij START.</span>
+    </div>
+    <div class="ll" id="cursorLine">
+      <span class="lt">▶</span>
+      <span class="lm"><span class="cursor"></span></span>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
